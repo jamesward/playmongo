@@ -1,0 +1,22 @@
+#{extends 'main.html' /}
+#{set title:'Home' /}
+
+#{set 'moreScripts'}
+<script type="text/javascript">
+    $(function() {
+        $.get("/listBars", function(data) {
+            $.each(data, function(index, item) {
+                $("#bars").append("<li>Bar " + item.name + "</li>")
+            })
+        })
+    })
+</script>
+#{/set}
+
+<ul id="bars">
+</ul>
+
+#{form @addBar()}
+<input name="bar.name"/>
+<input type="submit"/>
+#{/form}
