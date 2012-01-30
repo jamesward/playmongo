@@ -1,0 +1,146 @@
+h1. PlayMorphia version history
+
+h2. <a name="roadmap">TODO list</a>
+
+* MongoDB multi-tenant support
+* Provide easy interface for update and batch update
+
+h2. <a name="1.2.4c">Updates in 1.2.4d</a>
+
+* Add BlobGsonAdapter and ModelFactoryGsonAdapter utilities
+
+h2. <a name="1.2.4c">Updates in 1.2.4c</a>
+
+* Support @Column annotation on @Embedded class
+* Add T getId(Class<T> class) interface to suppress type casting
+
+h2. <a name="1.2.4b">Updates in 1.2.4b</a>
+
+* Fix bug: <a href="https://github.com/greenlaw110/play-morphia/issues/48">#48 error when play restart in dev mode when authentication needed</a>
+* Fix bug: <a href="https://github.com/greenlaw110/play-morphia/pull/50">#50: Support enum type in MorphiaPlugin.MorphiaModelLoader.buildProperty</a>
+* Fix bug: <a href="https://github.com/greenlaw110/play-morphia/issues/51">#51: NullPointerException when morphia.id.type configuration not set</a>
+
+p(note). Thank "Vincent Buzzano":https://github.com/vbuzzano for contributing to bug fix of #48 and #50 
+
+h2. <a name="1.2.4a">Updates in 1.2.4a</a>
+
+* Fix bug: <a href="https://github.com/greenlaw110/play-morphia/issues/46">#46: [*morphia.id.type*] configuration are not read by MorphiaPlugin when application class has already enhanced</a>.
+
+h2. <a name="1.2.4">Updates in 1.2.4</a>
+
+* Huge improvements on documentation
+* Rewrite Yabe sample and now all tests passed
+* Improved GridFS access performance
+* Support GridFS delete on both query delete and model entity delete
+* Support new lifecycle annotations for clear semantic and better performance
+* Add _Cloud aggregation method to Model class
+* Fix bug in mongodb java driver: GridFSInputFile does not close inputstream after saved
+* Fix bug "#44 When model contains blob field, subsequent saves results in multiple GridFS records with duplicate names":https://github.com/greenlaw110/play-morphia/issues/44
+* Fix bug "#45 Way to avoid redundant log message":https://github.com/greenlaw110/play-morphia/issues/45
+
+h2. <a name="1.2.3d">Updates in 1.2.3d</a>
+
+* Fix bug: NullPointerException to fetch blob field before an new field saved
+
+h2. <a name="1.2.3c">Updates in 1.2.3c</a>
+
+* Create index on _created and _modified fields for models annotated with @AutoTimestamp
+
+h2. <a name="1.2.3beta1">Updates in 1.2.3beta1</a>
+
+* Support aggregation operations: max,min,sum,average,count and their group peers
+* Support connecting to replica set. Thanks https://github.com/taligent for his contribution
+* Supports custom keys to find relations by ID. Thanks https://github.com/zash80 for his contribution
+
+h2. <a name="1.2.2beta1">Updates in 1.2.2beta1</a>
+
+* This is an important and purely community driven release which includes the following updates:
+** Support GridFS, thanks Alexander Reelsen (alr@emplify.de) for his contribution!
+** Added a morphiaFixture tag. This allows models to be loaded and deleted from within Selenium test cases. Thanks Agile Consulting (http://www.agileconsulting.biz) for their contribution
+** Bug fix: Choices list for Reference Collection was always empty. Thanks Lepnio (https://github.com/lepnio) for his contribution
+
+h2. <a name="1.2.1beta6">Updates in 1.2.1beta6</a>
+
+* Fix bug: IllegalStateException of "User defined ID should be populated before persist" when saving a subtype model with @Id fields defined in parent type
+
+h2. <a name="1.2.1beta5">Updates in 1.2.1beta5</a>
+
+* Add disableValidation() to Model. This is useful when your different subtype model have different fields
+* Add @NoId annotation. This help to resolve issue discussed in https://groups.google.com/forum/#!topic/play-framework/hPWJCvefPoI/discussion
+
+h2. <a name="1.2.1beta4">Updates in 1.2.1beta4</a>
+
+* Upgrade morphia to 1.0-snapshot and mongo lib to 2.6.1
+
+h2. <a name="1.2.1beta3">Updates in 1.2.1beta3</a>
+
+* Limited support for multiple mongodb databases
+
+h2. <a name="1.2.1beta2">Updates in 1.2.1beat2</a>
+
+* "test" db used if no database configured and a warning issued
+* clear idCache when calling MorphiaFixtures.deleteX
+* support auto timestamp
+
+h2. <a name="1.2.1beta1">Updates in 1.2.1beta1</a>
+
+* Make it compatible with play-1.2.x
+
+h2. <a name="1.2beta-6">Updates in 1.2beta-6</a>
+
+* Support filter (where clause) in Model.Factory.count and Model.Factory.fetch
+* Add @Global annotated ObjectIdBinder to app. This could fix issue #5
+* Revert morphia library to 0.99-Snapshot as a workaround for issue #16
+
+h2. <a name="1.2beta-5">Updates in 1.2beta-5</a>
+
+* Fix issue: https://github.com/greenlaw110/play-morphia/issues#issue/12
+* Support simple where clause in MorphiaPlugin.MorphiaModelLoader.fetch|count
+
+h2. <a name="1.2beta-4">Updates in 1.2beta-4</a>
+
+* morphia lib updated to 0.99 release
+* mongo driver updated to 0.24 release
+
+h2. <a name="1.2beta-3">Updates in 1.2beta-3</a>
+
+* Fixed issues: 7,8,9, see http://github.com/greenlaw110/play-morphia/issues
+* Add new configuration: morphia.defaultWriteConcern
+
+h2. <a name="1.2beta-2">Updates in 1.2beta-2</a>
+
+* Fix bug: Play reload cause MappingException (https://github.com/greenlaw110/play-morphia/issues#issue/6)
+* Supress some debug information (change debug to trace) in MorphiaEnhancer and MorphiaPlugin
+
+h2. <a name="1.2beta">Updates in 1.2beta</a>
+
+* Upgrade Morphia Library to 0.99-SNAPSHOT, mongodb driver to 2.3
+* Better generic support in Model query methods. Now you don't need type cast for methods return a of entities. But if you use field or criteria in your expression, type cast is still needed
+* Support new Or query interface which is released since morphia-0.97
+
+Note using Long as IdType (configured with "morphia.id.type") and you have @Reference annotation in your model entities, then you will be in trouble. Check <a href="http://groups.google.com/group/morphia/browse_thread/thread/bdd51121c2845973">this</a> thread for detail. Yabe sample has been updated and now use ObjectId as ID type for the same reason
+
+Known Issues: 
+1. <a href="https://github.com/greenlaw110/play-morphia/issues/issue/5">StackOverflowError with unbind</a>
+2. <a href="https://github.com/greenlaw110/play-morphia/issues/issue/6">Play reload cause MappingException</a>
+
+h2. <a name="1.1d">Updates in 1.1d</a>
+
+* Fix bug: Play reload cause MappingException (https://github.com/greenlaw110/play-morphia/issues#issue/6)
+* Supress some debug information (change debug to trace) in MorphiaEnhancer and MorphiaPlugin
+
+h2. <a name="1.1c">Updates in 1.1c</a>
+
+* Fix bug in MorphiaFixture: delete(Class<Model>) -> delete(Class<? extends Model)
+
+h2. <a name="1.1b">Updates in 1.1b</a>
+
+* Yabe unit test passed 
+* Add isNew() method to Model 
+* Model.save() now return Model object which is comply to JPAModel; Use Model.save2() to return Key<Model> 
+
+h2. <a name="1.1a">Updates in 1.1a</a>
+
+* Fix problems with User defined @Id field 
+* Add information to document on how to create user defined @Id field entity 
+

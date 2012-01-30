@@ -2,4 +2,4 @@
 
 require:
     - play
-    - play -> morphia 1.2.4d
+    - play -> morphia 1.2.4e
